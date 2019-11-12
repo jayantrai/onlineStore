@@ -1,2 +1,1 @@
-Buy Mobile Website
-Online store with React and Redux
+Buy Mobile Website using React and Redux

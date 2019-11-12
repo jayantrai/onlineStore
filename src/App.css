@@ -10,5 +10,15 @@
 body{
   font-family: 'Dosis', sans-serif !important;
   background: var(--mainWhite) !important;
+  color:var(--mainDark) !important;
   
+  
+}
+
+.navbar-brand{
+  height: 3rem;
+}
+
+.nav-link{
+  color: var(--mainWhite)
 }

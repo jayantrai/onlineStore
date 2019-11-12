@@ -1,0 +1,14 @@
+:root{
+  --mainBlue: #2a2a2a;
+  --mainlight: #009ffd;
+  --mainWhite: #f3f3f3;
+  --mainDark: #232528;
+  --mainYellow: #ffa400;
+}
+
+
+body{
+  font-family: 'Dosis', sans-serif !important;
+  background: var(--mainWhite) !important;
+  
+}

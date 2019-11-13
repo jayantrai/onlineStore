@@ -35,6 +35,9 @@ const NavWrapper = styled.nav`
         color: var(--mainWhite) !important;
         font-size: 1.3rem;
     }
+    .navbar-brand{
+      height: 3rem;
+    }
 `
 
 export default NavBar

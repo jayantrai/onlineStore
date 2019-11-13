@@ -15,10 +15,15 @@ body{
   
 }
 
-.navbar-brand{
-  height: 3rem;
+.text-title {
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
 }
 
-.nav-link{
-  color: var(--mainWhite)
+.text-blue{
+  color: var(--mainBlue);
+}
+
+.text-bright {
+  color: var(--lightBlue);
 }

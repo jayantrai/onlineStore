@@ -9,16 +9,35 @@ class Products extends Component {
     const { id, title, img, price, inCart } = this.props.product
     return (
       <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
-          <div className="card">
-          <div className="img-container p-5"
-            onClick={console.log('you clicked on the img container')} >
-            <Link to='/details'>
-            <img src={img} alt="producrt" className="card-img-top"/>
+        <div className="card">
+          <div
+            className="img-container p-5"
+            onClick={console.log("you clicked on the img container")}>
+            <Link to="/details">
+              <img src={img} alt="producrt" className="card-img-top" />
             </Link>
+            <button
+              className="card-btn"
+              disabled={inCart ? true : false}
+              onClick={() => {
+                console.log("added to cart");
+              }}>
+              {/* conditional rendering logic for inCart */}
+              {/* check incart value either incart is true otherwise cart plus  */}
+
+              {inCart ? (
+                <p className="text-capitalize mb-0" disabled>
+                  {" "}
+                  in inCart
+                </p>
+              ) : (
+                <i className="fas fa-cart-plus" />
+              )}
+            </button>
           </div>
-          </div>
+        </div>
       </ProductWrapper>
-    )
+    );
   }
 }
 

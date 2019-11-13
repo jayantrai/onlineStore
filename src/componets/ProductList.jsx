@@ -5,9 +5,6 @@ import { storeProducts } from '../data.js'
 import { ProductConsumer } from '../componets/ContextAPI'
 
 class ProductList extends Component {
-    state = {
-        products: storeProducts
-    }
   render() {
     return (
     <React.Fragment>
@@ -20,7 +17,7 @@ class ProductList extends Component {
             <ProductConsumer>
                 {(value)=> {
                 return value.products.map(product => {
-                    return <Products key={product.id}product={product}/>
+                    return <Products key={product.id} product={product}/>
                 })
                 }}
             </ProductConsumer>

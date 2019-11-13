@@ -9,7 +9,6 @@ class ProductList extends Component {
         products: storeProducts
     }
   render() {
-      console.log(this.state.products)
     return (
     <React.Fragment>
       <div className="py-5">
@@ -17,10 +16,12 @@ class ProductList extends Component {
             <Title name="Our" title="Products" />
         </div>
         <div className="row">
+                {/* passing product values */}
             <ProductConsumer>
                 {(value)=> {
-                return <h1>{value}</h1>
-
+                return value.products.map(product => {
+                    return <Products key={product.id}product={product}/>
+                })
                 }}
             </ProductConsumer>
 

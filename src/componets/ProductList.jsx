@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Products from './Products'
 import Title from './Title'
-import { storeProducts } from '../data.js'
 import { ProductConsumer } from '../componets/ContextAPI'
 
 class ProductList extends Component {

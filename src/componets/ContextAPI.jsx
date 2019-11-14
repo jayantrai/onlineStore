@@ -12,7 +12,9 @@ class ProductProvider extends Component {
     state = {
         products: [],
         detailProduct: detailProduct,
-        cart: []
+        cart: [], 
+        modalOpen: false,
+        modalProduct: detailProduct
     }
 
 // fresh set of values instead of copying them
@@ -46,7 +48,7 @@ handleDetail = (id) => {
     })
 }
 
-// use index to find the product otherwise it wil mess up the display
+// use index to target the product otherwise the displayed product will move to the end
 addToCart = (id) => {
     let tempProducts = [...this.state.products]
     const index = tempProducts.indexOf(this.getItem(id))
@@ -60,18 +62,36 @@ addToCart = (id) => {
       return {
         products: tempProducts, cart:[...this.state.cart, product]
       }
-    }, ()=> (console.log(this.state)))
-
-
-
+    }, () => { 
+      console.log(this.state)
+      })
 }
+
+// open modal 
+openModal = id => {
+  const product = this.getItem(id)
+  this.setState(()=> {
+    return { modalProduct: product, modalOpen: true }
+  })
+}
+
+// close modal 
+closeModal = () => {
+  this.setState(()=> {
+    return { modalOpen: false }
+  })
+}
+
+
   render() {
     return (
       <ProductContext.Provider value={{
           // getting all the data products destructuring
           ...this.state,
           handleDetail:this.handleDetail,
-          addToCart: this.addToCart
+          addToCart: this.addToCart, 
+          openModal: this.openModal,
+          closeModal: this.closeModal
       }}>
         {this.props.children}
       </ProductContext.Provider>

@@ -21,7 +21,7 @@ componentDidMount() {
 
 // copying the value of the products not referencing them
 setProducts = () => {
-  const tempProducts = []
+  let tempProducts = []
   storeProducts.forEach(item => {
     const singleItem = {...item}
     tempProducts = [...tempProducts, singleItem]
@@ -35,8 +35,8 @@ handleDetail = () => {
     console.log("hello from detail")
 }
 
-addToCart = () => {
-    console.log("hello from add to cart")
+addToCart = (id) => {
+    console.log(`hello from add to cart id is ${id}`)
 }
   render() {
     return (

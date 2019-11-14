@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 // product consumer
 import { ProductConsumer } from './ContextAPI'
+// PropTypes to check the bug
+import PropTypes from 'proptypes'
 
 class Products extends Component {
   render() {
@@ -14,6 +16,7 @@ class Products extends Component {
             className="img-container p-5"
             onClick={console.log("you clicked on the img container")}
             >
+            {/* links to images from data.js  */}
             <Link to="/details">
               <img src={img} alt="product" className="card-img-top" />
             </Link>
@@ -49,6 +52,18 @@ class Products extends Component {
       </ProductWrapper>
     );
   }
+}
+
+Product.propTypes = {
+  product:PropTypes.shape({
+    id: PropTypes.number,
+    img:PropTypes.string,
+    title:PropTypes.string,
+    price:PropTypes.number,
+    inCart:PropTypes.bool
+
+
+  }).isRequired
 }
 
 const ProductWrapper = styled.div`

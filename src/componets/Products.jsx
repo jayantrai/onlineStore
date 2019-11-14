@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 // product consumer
 import { ProductConsumer } from './ContextAPI'
 // PropTypes to check the bug
-import PropTypes from 'proptypes'
+import PropTypes from 'prop-types'
 
 class Products extends Component {
   render() {
@@ -54,7 +54,7 @@ class Products extends Component {
   }
 }
 
-Product.propTypes = {
+Products.propTypes = {
   product:PropTypes.shape({
     id: PropTypes.number,
     img:PropTypes.string,

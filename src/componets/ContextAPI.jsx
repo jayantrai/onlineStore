@@ -10,10 +10,26 @@ const ProductContext = React.createContext()
 
 class ProductProvider extends Component {
     state = {
-        products: storeProducts,
+        products: [],
         detailProduct: detailProduct
     }
 
+// fresh set of values instead of copying them
+componentDidMount() {
+  this.setProducts()
+}
+
+// copying the value of the products not referencing them
+setProducts = () => {
+  const tempProducts = []
+  storeProducts.forEach(item => {
+    const singleItem = {...item}
+    tempProducts = [...tempProducts, singleItem]
+  })
+  this.setState(()=> {
+    return {products: tempProducts}
+  })
+}
 
 handleDetail = () => {
     console.log("hello from detail")

@@ -18,7 +18,7 @@ class NavBar extends Component {
             </ButtonContainer>
             </Link>
             
-            <Link to='/mycart' className="nav-link ml-auto">
+            <Link to='/cart' className="nav-link ml-auto">
             <ButtonContainer>My Cart
             </ButtonContainer>
             </Link>

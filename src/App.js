@@ -4,9 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import ProductList from './componets/ProductList.jsx'
 import NavBar from './componets/NavBar.jsx'
-import MyCart from './componets/MyCart.jsx'
 import Details from './componets/Details.jsx'
 import Modal from './componets/Modal.jsx'
+
+import Cart from './componets/Cart/Cart.jsx'
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
             <Route exact path="/" component={ProductList} />
             <Route path="/products" component={ProductList} />
             <Route path="/details" component={Details} />
-            <Route path="/mycart" component={MyCart} />
+            <Route path="/cart" component={Cart} />
           </Switch>
           <Modal />
       </Router>

@@ -9,93 +9,121 @@ const ProductContext = React.createContext()
 // Consumer (we dont need to pass props)
 
 class ProductProvider extends Component {
-    state = {
-        products: [],
-        detailProduct: detailProduct,
-        cart: [], 
-        modalOpen: false,
-        modalProduct: detailProduct
-    }
+  state = {
+    products: [],
+    detailProduct: detailProduct,
+    cart: [],
+    modalOpen: false,
+    modalProduct: detailProduct,
+    cartSubTotal: 0,
+    cartTax: 0,
+    cartTotal: 0
+  };
 
-// fresh set of values instead of copying them
-componentDidMount() {
-  this.setProducts()
-}
-
-// copying the value of the products not referencing them
-setProducts = () => {
-  let tempProducts = []
-  storeProducts.forEach(item => {
-    const singleItem = {...item}
-    tempProducts = [...tempProducts, singleItem]
-  })
-  this.setState(()=> {
-    return {products: tempProducts}
-  })
-}
-
-// get Item by ID
-getItem = (id) => {
-  const product = this.state.products.find(item => item.id === id)
-  return product
+  // fresh set of values instead of copying them
+  componentDidMount() {
+    this.setProducts();
   }
 
-// connecting detailed Product with product 
-handleDetail = (id) => {
-    const product = this.getItem(id)
-    this.setState(()=> {
-      return {detailProduct: product}
-    })
-}
+  // copying the value of the products not referencing them
+  setProducts = () => {
+    let tempProducts = [];
+    storeProducts.forEach(item => {
+      const singleItem = { ...item };
+      tempProducts = [...tempProducts, singleItem];
+    });
+    this.setState(() => {
+      return { products: tempProducts };
+    });
+  };
 
-// use index to target the product otherwise the displayed product will move to the end
-addToCart = (id) => {
-    let tempProducts = [...this.state.products]
-    const index = tempProducts.indexOf(this.getItem(id))
-    const product = tempProducts[index]
+  // get Item by ID
+  getItem = id => {
+    const product = this.state.products.find(item => item.id === id);
+    return product;
+  };
+
+  // connecting detailed Product with product
+  handleDetail = id => {
+    const product = this.getItem(id);
+    this.setState(() => {
+      return { detailProduct: product };
+    });
+  };
+
+  // use index to target the product otherwise the displayed product will move to the end
+  addToCart = id => {
+    let tempProducts = [...this.state.products];
+    const index = tempProducts.indexOf(this.getItem(id));
+    const product = tempProducts[index];
     product.inCart = true;
-    product.count = 1
-    const price = product.price
-    product.total = price
+    product.count = 1;
+    const price = product.price;
+    product.total = price;
 
-    this.setState(()=> {
-      return {
-        products: tempProducts, cart:[...this.state.cart, product]
+    this.setState(
+      () => {
+        return {
+          products: tempProducts,
+          cart: [...this.state.cart, product]
+        };
+      },
+      () => {
+        console.log(this.state);
       }
-    }, () => { 
-      console.log(this.state)
-      })
-}
+    );
+  };
 
-// open modal 
-openModal = id => {
-  const product = this.getItem(id)
-  this.setState(()=> {
-    return { modalProduct: product, modalOpen: true }
-  })
-}
+  // open modal
+  openModal = id => {
+    const product = this.getItem(id);
+    this.setState(() => {
+      return { modalProduct: product, modalOpen: true };
+    });
+  };
 
-// close modal 
-closeModal = () => {
-  this.setState(()=> {
-    return { modalOpen: false }
-  })
-}
+  // close modal
+  closeModal = () => {
+    this.setState(() => {
+      return { modalOpen: false };
+    });
+  };
+
+  // increment
+
+  increment = id => {
+    console.log("this is from increment");
+  };
+
+  decrement = id => {
+    console.log("this is from decrement");
+  };
 
 
+  removeItem = id => {
+    console.log("this is from removeItem")
+  }
+
+  clearCart = () => {
+    console.log("Cart was cleared")
+  }
   render() {
     return (
-      <ProductContext.Provider value={{
+      <ProductContext.Provider
+        value={{
           // getting all the data products destructuring
           ...this.state,
-          handleDetail:this.handleDetail,
-          addToCart: this.addToCart, 
+          handleDetail: this.handleDetail,
+          addToCart: this.addToCart,
           openModal: this.openModal,
-          closeModal: this.closeModal
-      }}>
+          closeModal: this.closeModal, 
+          increment: this.increment,
+          decrement: this.decrement,
+          clearCart: this.clearCart
+        }}>
         {this.props.children}
       </ProductContext.Provider>
-    )
+    );
   }
 }
 const ProductConsumer = ProductContext.Consumer

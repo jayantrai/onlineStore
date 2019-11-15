@@ -6,6 +6,4 @@ This project has been deployed to https://react-ecommerce-mobilestore.netlify.co
 
 Additional Features yet to be integrated in to the website:
 1. Mock paypal integration
-
-In the project directory, you can run:
-`npm start`
+2. User details

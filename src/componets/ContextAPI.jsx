@@ -69,7 +69,8 @@ class ProductProvider extends Component {
         };
       },
       () => {
-        console.log(this.state);
+        // callback function to change the value when added to cart
+        this.addTotals()
       }
     );
   };
@@ -105,7 +106,27 @@ class ProductProvider extends Component {
   }
 
   clearCart = () => {
-    console.log("Cart was cleared")
+    this.setState(()=> {
+      return {cart: []}
+    }, ()=> {
+      this.setProducts()
+    })
+  }
+
+  addTotals = () => {
+    let subTotal = 0
+    this.state.cart.map(item => (subTotal += item.total ))
+    const tempTax = subTotal * 0.09
+    const tax = parseFloat(tempTax.toFixed(2))
+    const total = subTotal + tax
+
+    this.setState(()=> {
+      return {
+        cartSubTotal: subTotal,
+        cartTax: tax,
+        cartTotal: total
+      }
+    })
   }
   render() {
     return (
